@@ -1,11 +1,15 @@
-<div class="main-container">
+{% waveDivider true,
+"#f3f8f5" %}
+
+<div class="bg-[#f3f8f5]">
+<div class=" main-container">
     <div class="flex flex-col md:flex-row items-center py-24">
-        {% phoneMockup  "/assets/images/pages/index/carbon-budget.png" %}
+        {% phoneMockup  "/assets/images/pages/index/landing-page.png" %}
         <div class="flex-1 py-10 px-0 md:px-14">
             <h2 class="text-5xl mb-5">
                 <a id="download" class="no-underline">Download</a>
             </h2>
-            <p class="text-lg">Download for free, without ads and no tracking</p>
+            <p class="text-lg">Making waste management fun and rewarding. Download for free without ads or tracking.</p>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
                     {% include "index/googlePlay.njk" %}
@@ -17,3 +21,6 @@
         </div>
     </div>
 </div>
+</div>
+{% waveDivider false,
+"#f3f8f5" %}

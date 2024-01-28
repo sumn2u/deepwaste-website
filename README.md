@@ -1,6 +1,6 @@
-# NMF.earth
+# D.Waste
 
-NMF.earth is built with 11ty, Alpine.js and Tailwind.
+D.Waste is built with 11ty, Alpine.js and Tailwind.
 
 ## Getting started
 

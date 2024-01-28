@@ -2,16 +2,19 @@
 <div class="bg-[#f3f8f5] py-14">
     <div class="main-container">
         <div class="text-center py-10">
-            <h2 class="text-4xl font-semibold mb-5">Track what you do</h2>
-            <p class="text-lg">Transport, food, electricity, streaming, clothing, cryptocurrency, purchases... any kind of carbon
-                emission is available in the app. You can even scan barcodes on food products to get the environmental impact of what
-                you eat!
+            <h2 class="text-4xl font-semibold mb-5">How it works?</h2>
+            <p class="text-lg">
+                The application utilizes waste classification AI engine to categorize waste into six types: Trash, Plastic, Paper, Metal, Glass, and Cardboard. 
+                To determine the waste type, the user uploads an image of the waste to the application, and the AI engine identifies it. Once identified, the model calculates the carbon emissions associated with the material and provides waste management recommendations. By managing waste, users can earn reward points, and the app tracks the amount of carbon footprint saved. 
+                The application can be used offline, but an internet connection is required to submit misidentified waste images and to synchronize accumulated points. Additionally, a leaderboard is generated based on the saved carbon footprint.
             </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center pb-14">
-            {% phoneMockup  "/assets/images/pages/index/categories.png" %}
-            {% phoneMockup  "/assets/images/pages/index/scan-bar-code.png" %}
-            {% phoneMockup  "/assets/images/pages/index/add-scan-bar-code.png" %}
+        
+        <div class="grid gap-6 items-center">
+            <img
+                    class="max-w-full h-auto"
+                    src="/assets/images/pages/index/app-workflow.png"
+                />
         </div>
     </div>
 </div>
