@@ -35,7 +35,7 @@ const badge = (name, iconName, link) => {
     <div class="mr-2">
       ${icon}
     </div>
-    <div>
+    <div class="text-center mx-auto">
       <span class="select-none pt-1 pl-1 text-xl font-regular">
         ${name}
       </span>

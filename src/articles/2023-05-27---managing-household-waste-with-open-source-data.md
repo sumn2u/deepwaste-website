@@ -1,9 +1,9 @@
 ---
-title: Manage Household Waste via Mobile App using Open Source Data
+title: Manage Household Waste using Open Source Data
 date: 2023-05-27
 categories:
   ["Household Waste", "Open Source data", "Sustainability", "Deep Learning"]
-description: "Manage Household Waste via Mobile App using Open Source Data"
+description: "Waste management is a major issue in our modern society. The increasing population and consumption lead to more waste being generated."
 slug: "managing-household-waste-with-open-source-data"
 ---
 

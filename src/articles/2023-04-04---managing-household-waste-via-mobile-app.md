@@ -1,9 +1,9 @@
 ---
-title: Manage Household Waste via Mobile App
+title: Deep Learning Approach to Manage Household Waste
 date: 2023-04-04
 categories:
   ["Household Waste", "Deep Learning", "Mobile App", "Sustainiability"]
-description: "Deep Learning Approach to Manage Household Waste via Mobile App"
+description: "Household waste, or residential waste, is the discarded material produced by individuals and families in their homes, including food scraps, paper, plastics, glass, metal, and electronics. These waste generated on a daily basis varies significantly, influenced by various factors such a location, population density, and lifestyle."
 slug: "managing-household-waste-via-mobile-app"
 ---
 
