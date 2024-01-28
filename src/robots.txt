@@ -1,2 +1,4 @@
+Sitemap: https://www.dwaste.live/sitemap.xml
+
 User-agent: *
-Allow: /
+Disallow:

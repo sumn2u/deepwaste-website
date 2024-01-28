@@ -34,5 +34,20 @@
         {{site.description}}
       {% endif %}
     "/>
+  <link rel="canonical" href="{{page.url}}"/>
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="{{title or site.name or metadata.title}}"/>
+  <meta property="og:url" content="{{page.url}}"/>
+  <meta property="og:description" content="{{ description or site.description }}"/>
+  <meta property="og:image" content="{{ '/assets/images/pages/index/landing-page.png' | url }}" />
+  <meta property="og:type" content="article" />
+
+  <meta name="twitter:title" content="{{title or site.name or metadata.title}}">
+  <meta name="twitter:description" content="{{ description or site.description }}"> 
+  <meta name="twitter:url" ccontent="{{ '/assets/images/pages/index/landing-page.png' | url }}" > 
+  <meta name="twitter:card" content="summary">
+
+
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
