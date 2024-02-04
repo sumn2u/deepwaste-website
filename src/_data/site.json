@@ -16,5 +16,6 @@
   "app_store_url": "https://apps.apple.com/us/app/deep-waste-ai/id6445863514?platform=iphone",
   "play_store_url": "https://play.google.com/store/apps/details?id=com.hai.deep_waste",
   "email_url": "mailto:sumn2u@gmail.com?subject=Hi D.Waste team!",
-  "pitch_url": "https://youtu.be/EebKB9xDATk"
+  "pitch_url": "https://youtu.be/EebKB9xDATk",
+  "rest_api_url": "https://deep-waste-rest-api.fly.dev/api/"
 }
