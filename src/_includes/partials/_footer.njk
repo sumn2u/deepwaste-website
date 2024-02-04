@@ -6,27 +6,27 @@
     <div class="flex-none mt-4 md:mt-0">
         <div class="flex justify-around items-center space-x-2 md:space-x-6">
             {% if site.dribble_url %}
-                <a aria-label="dribbble" target="_blank" href="{{ site.dribble_url }}">
+                <a aria-label="dribbble" target="_blank" rel="noopener" href="{{ site.dribble_url }}">
                     <svg class="fill-gray-500 hover:hover-link" width="26px" height="26px">{% svg "dribbble" %}</svg>
                 </a>
             {% endif %}
             {% if site.poeditor_url %}
-                <a aria-label="poeditor" target="_blank" href="{{ site.poeditor_url }}">
+                <a aria-label="poeditor" target="_blank" rel="noopener" href="{{ site.poeditor_url }}">
                     <svg class="fill-gray-500 hover:hover-link" width="26px" height="26px">{% svg "language" %}</svg>
                 </a>
             {% endif %}
             {% if site.github_url %}
-                <a aria-label="github" target="_blank" href="{{ site.github_url }}">
+                <a aria-label="github" target="_blank" rel="noopener" href="{{ site.github_url }}">
                     <svg class="fill-gray-500 hover:hover-link" width="26px" height="26px">{% svg "github" %}</svg>
                 </a>
             {% endif %}
             {% if site.figma_url %}
-                <a aria-label="figma" target="_blank" href="{{ site.figma_url }}">
+                <a aria-label="figma" target="_blank" rel="noopener" href="{{ site.figma_url }}">
                     <svg class="fill-gray-500 hover:hover-link" width="26px" height="26px">{% svg "figma" %}</svg>
                 </a>
             {% endif %}
             {% if site.email_url %}
-                <a aria-label="email" target="_blank" href="{{ site.email_url }}">
+                <a aria-label="email" target="_blank" rel="noopener" href="{{ site.email_url }}">
                     <svg class="fill-gray-500 hover:hover-link" width="26px" height="26px">{% svg "email" %}</svg>
                 </a>
             {% endif %}

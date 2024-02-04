@@ -13,6 +13,7 @@
                 <img
                     class="max-w-full h-auto rounded-[1.25rem]"
                     src=${path}
+                    alt="phone-mockup"
                 />
             </div>
         </figure>
