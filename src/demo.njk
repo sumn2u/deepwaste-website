@@ -6,12 +6,7 @@ order: 4
 ---
 
 <div class="main-container">
-<h1 class="text-4xl sm:text-4xl md:text-4xl mb-5">REST API</h1>
-    <h2 class="text-lg mb-5">
-       We have made the waste classification API public. To access it, please visit <a target="_blank" rel="noopener" href="{{ site.rest_api_url }}">here</a>.
-    </h2>
-
-    <h1 class="text-4xl sm:text-4xl md:text-4xl mb-5">Demo</h1>
+    <h1 class="text-4xl sm:text-4xl md:text-4xl font-semibold mb-5">Demo</h1>
     <h2 class="text-lg mb-5">
         Upload an image of waste and let our AI engine classify it for you.
     </h2>
@@ -28,8 +23,18 @@ order: 4
     <h2 class="text-lg mb-5" id="predicted-result">
         
     </h2>
+    <div class="bg-yellow-200 border-l-4 border-yellow-500 text-gray-800 p-4 w-full rounded-md shadow-md flex mb-5">
+        <span class="block font-semibold mr-2"> ⚠️Note:</span>
+        <span>Our predictions can be wrong. Help us improve our predictions by submitting waste photos through our app. Together, we can reduce waste and protect the planet.</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-4xl md:text-4xl font-semibold mb-5">REST API</h1>
+    <h2 class="text-lg mb-5">
+       We have made the waste classification API public. To access it, please visit <a target="_blank" rel="noopener" href="{{ site.rest_api_url }}">here</a>.
+    </h2>
 </div>
 <div class="h-24"></div>
+{% include "demo/tips.njk" %}
 
 <script>
 const dropArea = document.getElementById("drop-area");
