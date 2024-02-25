@@ -11,7 +11,7 @@ D.Waste is built with 11ty, Alpine.js and Tailwind.
 ## TODO
 
 - [x] Site map
-- [ ] Mobile Responsiveness
+- [x] Mobile Responsiveness
 - [ ] Images size in `/pictures`
-- [ ] Improve SEO
+- [x] Improve SEO
 - [ ] Social images for posts
