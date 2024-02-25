@@ -9,16 +9,20 @@ order: 4
 
 <div class="h-10"></div>
 {% include "demo/tips.njk" %}
-<script src="/js/tf.js?v=3.10.4"></script>
+<script defer src="/js/tf.js?v=3.10.4"></script>
 <script>
 let model;
+let predictElementText = document.getElementById("predicted-result")
+predictElementText.innerHTML = "Awakening the Machine ⏳";
 
 // Load the model when the page loads
 async function loadModel() {
     model = await tf.loadLayersModel('/assets/model/model.json');
+    predictElementText.innerHTML = ""
 }
 
-loadModel(); // Load the model
+// Run loadModel after tf.js is loaded
+document.querySelector('script[src="/js/tf.js?v=3.10.4"]').addEventListener('load', loadModel);
 
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("input-file");
@@ -50,7 +54,6 @@ async function processImageFile(file) {
 
 async function  uploadImage (){
     let imgLink = URL.createObjectURL(inputFile.files[0])
-    let predictElementText = document.getElementById("predicted-result")
     imageView.style.backgroundImage = `url(${imgLink})`;
     imageView.textContent = "";
     imageView.style.border = 0;
