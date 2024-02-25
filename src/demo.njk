@@ -9,3 +9,80 @@ order: 4
 
 <div class="h-10"></div>
 {% include "demo/tips.njk" %}
+<script src="/js/tf.js?v=3.10.4"></script>
+<script>
+const dropArea = document.getElementById("drop-area");
+const inputFile = document.getElementById("input-file");
+const imageView = document.getElementById("img-view");
+
+inputFile.addEventListener('change', uploadImage);
+
+
+// Function to preprocess image file and convert it to a tensor
+async function processImageFile(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = async function() {
+            const img = new Image();
+            img.onload = function() {
+                const tensor = tf.browser.fromPixels(img)
+                    .resizeNearestNeighbor([224, 224]) // Resize to match model's expected input shape
+                    .toFloat()
+                    .expandDims();
+
+                resolve(tensor);
+            };
+            img.src = reader.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
+
+async function  uploadImage (){
+    let imgLink = URL.createObjectURL(inputFile.files[0])
+    let predictElementText = document.getElementById("predicted-result")
+    imageView.style.backgroundImage = `url(${imgLink})`;
+    imageView.textContent = "";
+    imageView.style.border = 0;
+
+    // Load the TensorFlow Lite model
+    const model = await tf.loadLayersModel('/assets/model/model.json');
+
+    // Example labels array
+    const labels = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash'];
+
+    predictElementText.innerHTML = "Analysing ⏳"
+    // Preprocess input image
+    const tensor = await processImageFile(inputFile.files[0]);
+    // Use the tensor for further processing or inference
+    // Perform inference
+    const predictions = model.predict(tensor);
+
+    // Get the predicted label index
+    const predictedLabelIndex = predictions.argMax(1).dataSync()[0];
+
+    // Get the predicted percentage for each class
+    const probabilities = predictions.dataSync();
+
+    // Map the predicted label index to the actual label
+    const predictedLabel = labels[predictedLabelIndex];
+
+    // Get the predicted percentage for the predicted class
+    const predictedPercentage = (probabilities[predictedLabelIndex] * 100).toFixed(2);
+
+    predictElementText.innerHTML = `Result: Predicted <b>${predictedLabel}</b> with <b>${predictedPercentage}</b>% confidence.`;
+
+}
+
+dropArea.addEventListener("dragover", function(e){
+    e.preventDefault();
+})
+
+dropArea.addEventListener("drop", function(e){
+    e.preventDefault();
+    inputFile.files = e.dataTransfer.files;
+    uploadImage();
+})
+
+</script>

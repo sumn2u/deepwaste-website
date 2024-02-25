@@ -18,7 +18,7 @@
     </h2>
     <div class="bg-yellow-200 border-l-4 border-yellow-500 text-gray-800 p-4 w-full rounded-md shadow-md flex mb-8">
         <span class="block font-semibold mr-2"> ⚠️Note:</span>
-        <span>Our predictions can be wrong. Help us improve our predictions by submitting waste photos through our app. Together, we can reduce waste and protect the planet.</span>
+        <span>We're learning, but sometimes we make mistakes! Submit waste photos through our app to help us learn and reduce waste ♻️. Let's protect our planet together 🌍💜!</span>
     </div>
 
     <h1 class="text-4xl sm:text-4xl md:text-4xl font-semibold mb-5">REST API</h1>
@@ -26,55 +26,3 @@
        We have made the waste classification API public. To access it, please visit <a target="_blank" rel="noopener" href="{{ site.rest_api_url }}">here</a>.
     </h2>
 </div>
-
-<script>
-const dropArea = document.getElementById("drop-area");
-const inputFile = document.getElementById("input-file");
-const imageView = document.getElementById("img-view");
-
-
-inputFile.addEventListener('change', uploadImage);
-
-function uploadImage(){
-    let imgLink = URL.createObjectURL(inputFile.files[0])
-    let predictElementText = document.getElementById("predicted-result")
-    imageView.style.backgroundImage = `url(${imgLink})`;
-    imageView.textContent = "";
-    imageView.style.border = 0;
-
-    const formData = new FormData();
-    formData.append('file', inputFile.files[0]); // Assuming you have an input element with id 'fileInput'
-
-    const classifiers = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash'];
-    const classifiersParam = encodeURIComponent(JSON.stringify(classifiers));
-
-    fetch('https://deep-waste-rest-api.fly.dev/api/model/predict?classifiers=' + classifiersParam, {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-    },
-    body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        const { accuracy, label } = data;
-        predictElementText.innerHTML = `Result: Predicted <b>${label}</b> with <b>${accuracy}</b>% confidence.`;
-
-    })
-    .catch(error => {
-        predictElementText.innerHTML = " ";
-        console.error('Error:', error)
-    });
-}
-
-dropArea.addEventListener("dragover", function(e){
-    e.preventDefault();
-})
-
-dropArea.addEventListener("drop", function(e){
-    e.preventDefault();
-    inputFile.files = e.dataTransfer.files;
-    uploadImage();
-})
-
-</script>
