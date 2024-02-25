@@ -11,6 +11,15 @@ order: 4
 {% include "demo/tips.njk" %}
 <script src="/js/tf.js?v=3.10.4"></script>
 <script>
+let model;
+
+// Load the model when the page loads
+async function loadModel() {
+    model = await tf.loadLayersModel('/assets/model/model.json');
+}
+
+loadModel(); // Load the model
+
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("input-file");
 const imageView = document.getElementById("img-view");
@@ -46,8 +55,10 @@ async function  uploadImage (){
     imageView.textContent = "";
     imageView.style.border = 0;
 
-    // Load the TensorFlow Lite model
-    const model = await tf.loadLayersModel('/assets/model/model.json');
+     if (!model) {
+        predictElementText.innerHTML = "Model not loaded.";
+        return;
+    }
 
     // Example labels array
     const labels = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash'];
@@ -72,6 +83,8 @@ async function  uploadImage (){
     const predictedPercentage = (probabilities[predictedLabelIndex] * 100).toFixed(2);
 
     predictElementText.innerHTML = `Result: Predicted <b>${predictedLabel}</b> with <b>${predictedPercentage}</b>% confidence.`;
+    
+    tensor.dispose(); // Free up memory
 
 }
 
