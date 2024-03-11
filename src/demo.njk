@@ -9,7 +9,9 @@ order: 4
 
 <div class="h-10"></div>
 {% include "demo/tips.njk" %}
-<script defer src="/js/tf.js?v=3.10.4"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.10/dist/tf-tflite.min.js"></script>
+
 <script>
 let model;
 let predictElementText = document.getElementById("predicted-result")
@@ -17,12 +19,30 @@ predictElementText.innerHTML = "Awakening the Machine ⏳";
 
 // Load the model when the page loads
 async function loadModel() {
-    model = await tf.loadLayersModel('/assets/model/model.json');
+    model = await tflite.loadTFLiteModel('/assets/model/classification_model.tflite');
     predictElementText.innerHTML = ""
 }
 
-// Run loadModel after tf.js is loaded
-document.querySelector('script[src="/js/tf.js?v=3.10.4"]').addEventListener('load', loadModel);
+// Run loadModel after tfjs-backend-cpu.js is loaded
+const scriptUrls = [
+  'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js',
+  'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.6/dist/tf-tflite.min.js'
+];
+Promise.all(scriptUrls.map((url) => {
+  const script = document.createElement('script');
+  script.src = url;
+  return new Promise((resolve) => {
+    script.addEventListener('load', resolve);
+    document.head.appendChild(script); // Assuming you want to append to the head
+  });
+}))
+.then(() => {
+  console.log('All scripts loaded!');
+  loadModel();
+})
+.catch((error) => {
+  console.error('Error loading scripts:', error);
+});
 
 const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("input-file");
@@ -38,12 +58,14 @@ async function processImageFile(file) {
         reader.onload = async function() {
             const img = new Image();
             img.onload = function() {
-                const tensor = tf.browser.fromPixels(img)
-                    .resizeNearestNeighbor([224, 224]) // Resize to match model's expected input shape
+                const inputTensor = tf.browser.fromPixels(img)
+                    .resizeBilinear([224, 224])
+                    .expandDims()
                     .toFloat()
-                    .expandDims();
+                    .div(tf.scalar(255)); // Normalize pixel values to [0, 1]
 
-                resolve(tensor);
+                resolve(inputTensor);
+            
             };
             img.src = reader.result;
         };
@@ -73,8 +95,11 @@ async function  uploadImage (){
     // Perform inference
     const predictions = model.predict(tensor);
 
+    // Get predictions 
+    const predictionOutput = predictions.dataSync();
+
     // Get the predicted label index
-    const predictedLabelIndex = predictions.argMax(1).dataSync()[0];
+    const predictedLabelIndex = predictionOutput.indexOf(Math.max(...predictionOutput));
 
     // Get the predicted percentage for each class
     const probabilities = predictions.dataSync();

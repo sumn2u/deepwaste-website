@@ -1,6 +1,5 @@
 const { DateTime } = require("luxon");
 const fs = require("fs");
-const tf = require('@tensorflow/tfjs');
 
 const markdownIt = require("markdown-it");
 const pageHeading = require("./src/_includes/shortcodes/pageHeading");
@@ -22,11 +21,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/robots.txt": "/robots.txt" });
   eleventyConfig.addPlugin(lazyImagesPlugin);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
-  eleventyConfig.addPassthroughCopy(tf);
 
   eleventyConfig.addPassthroughCopy({
-    "./node_modules/alpinejs/dist/cdn.js": "./js/alpine.js",
-    "./node_modules/@tensorflow/tfjs/dist/tf.js": "./js/tf.js",
+    "./node_modules/alpinejs/dist/cdn.js": "./js/alpine.js"
   });
 
   const md = new markdownIt({
