@@ -19,5 +19,6 @@
   "email_url": "mailto:sumn2u@gmail.com?subject=Hi D.Waste team!",
   "pitch_url": "https://youtu.be/EebKB9xDATk",
   "rest_api_url": "https://deep-waste-rest-api.fly.dev/api/",
-  "garbage_guru_competition_url": "https://www.kaggle.com/competitions/garbage-guru-challenge"
+  "garbage_guru_competition_url": "https://www.kaggle.com/competitions/garbage-guru-challenge",
+  "dataset_doi": "https://doi.org/10.34740/kaggle/ds/2814684"
 }
