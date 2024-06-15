@@ -5,11 +5,10 @@
                 {{ site.nmf_earth_prefix }}<span class="text-primary">.</span>{{ site.nmf_earth_suffix }}
             </a>
         </div>
-        <div class="flex pl-6 justify-center">
-            <div @click="show = ! show" class="w-full text-center mb-6">
-                <div aria-label="menu" class="no-underline">
-                    {% badge "Menu",
-                    "menu" %}
+        <div class="flex justify-center pl-6 pr-6">
+            <div @click="show = !show" class="w-full text-center mb-6 cursor-pointer">
+                <div aria-label="menu" class="no-underline text-lg font-semibold">
+                    {% badge "Menu", "menu" %}
                 </div>
             </div>
         </div>

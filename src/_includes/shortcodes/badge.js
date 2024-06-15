@@ -57,7 +57,7 @@ const badge = (name, iconName, link) => {
 
   wrapper = (content) => {
     return `
-    <div class="inline-block items-center badge font-medium flex text-gray-500">
+    <div class="inline-block items-center badge font-medium flex text-gray-500 w-full">
       ${content}
     </div>
     `;
