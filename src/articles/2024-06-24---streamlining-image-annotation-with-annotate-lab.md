@@ -115,5 +115,23 @@ An example of orange annotation is demonstrated in the video below.
  
 [![Annotate Lab](https://img.youtube.com/vi/gR17uHbfoU4/0.jpg)](https://www.youtube.com/watch?v=gR17uHbfoU4)
 
+### YOLO Format 
+
+YOLO format is also supported by A.Lab. Below is an example of annotated ripe and unripe tomatoes. In this example, `0` represents ripe tomatoes and `1` represents unripe ones.
+
+![YOLO Annotation Example](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2i599z2tjxwsgs3mqbdc.png)
+
+The label of the above image are as follows:
+```
+0 0.213673 0.474717 0.310212 0.498856
+0 0.554777 0.540507 0.306350 0.433638
+1 0.378432 0.681239 0.223970 0.268879
+```
+
+Applying the generated labels we get following results.
+
+![YOLO Generated Labels](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gmel5fe08ad35rvmqlht.jpg)
+
+
 ### Conclusion
 By providing a streamlined, user-friendly interface, Annotate-Lab simplifies the process of image annotation, making it accessible to a wider range of users and enhancing the accuracy and efficiency of computer vision model training.
