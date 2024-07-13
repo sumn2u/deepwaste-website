@@ -6,7 +6,7 @@
 const accordion = (title, subtitle) => {
   return `
     <details class="group py-1 text-lg">
-      <summary class="flex cursor-pointer flex-row items-center justify-between py-1 font-semibold text-gray-800 marker:[font-size:0px]">
+      <summary class="no-summary-marker flex cursor-pointer flex-row items-center justify-between py-1 font-semibold text-gray-800 marker:[font-size:0px]">
         ${title}
           <svg
               class="h-6 w-6 rotate-0 transform text-gray-400 group-open:rotate-180"
