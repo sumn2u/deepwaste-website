@@ -5,6 +5,7 @@ categories:
   ["Pruning", "Model Quantization", "Keras", "Tensorflow", "Optimization"]
 description: "Pruning and quantization are powerful techniques that can optimize deep learning models, especially in resource-constrained environments. They help to reduce model size and computational requirements while maintaining similar performance to the original model."
 slug: "pruning-and-quantization-in-keras using-trashNet-dataset"
+image: "https://cdn-images-1.medium.com/v2/resize:fit:2000/1*-m1djhn36T5mukBhnsMhJw.png"
 ---
 
 

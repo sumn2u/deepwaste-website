@@ -5,6 +5,7 @@ categories:
   ["Household Waste", "Open Source data", "Sustainability", "Deep Learning"]
 description: "Waste management is a major issue in our modern society. The increasing population and consumption lead to more waste being generated."
 slug: "managing-household-waste-with-open-source-data"
+image: "https://cdn-images-1.medium.com/max/3840/1*hrneNyOValFBbEAQbAqvwg.png"
 ---
 
 

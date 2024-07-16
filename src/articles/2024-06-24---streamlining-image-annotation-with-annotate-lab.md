@@ -5,6 +5,7 @@ categories:
   ["Open Source", "Computer Vision", "Machine Learning", "Image Annotation"]
 description: "Image annotation is the process of adding labels or descriptions to images to provide context for computer vision models. This task involves tagging an image with information that helps a machine understand its content. Annotation is crucial in applications such as self-driving cars, medical image analysis, and satellite imagery analysis."
 slug: "streamlining-image-annotation-with-annotate-lab"
+image: "https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0ajpajq7d96ebjrijcqn.png"
 ---
 
 

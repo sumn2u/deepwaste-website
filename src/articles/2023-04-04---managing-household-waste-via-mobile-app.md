@@ -5,6 +5,7 @@ categories:
   ["Household Waste", "Deep Learning", "Mobile App", "Sustainiability"]
 description: "Household waste, or residential waste, is the discarded material produced by individuals and families in their homes, including food scraps, paper, plastics, glass, metal, and electronics. These waste generated on a daily basis varies significantly, influenced by various factors such a location, population density, and lifestyle."
 slug: "managing-household-waste-via-mobile-app"
+image: "https://cdn-images-1.medium.com/max/3200/0*cBB6vW5bf9-ogg8-"
 ---
 
 
