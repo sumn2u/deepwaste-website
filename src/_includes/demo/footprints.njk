@@ -1,0 +1,151 @@
+<div class="main-container">
+    <h1 class="text-4xl sm:text-4xl md:text-4xl font-semibold mb-5">Carbon Footprints Calculator</h1>
+
+  <div class="max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    
+      <!-- Left Side -->
+      <div class="space-y-2">
+   
+      <p>
+  The Carbon Footprints Calculator shows the carbon emissions that one can avoid by recycling. It helps grasp the positive environmental effects of recycling various materials. By inputting the weight of the recycled items, one can quickly determine the amount of carbon dioxide (CO<sub>2</sub>) emissions prevented from being released into the atmosphere.
+</p>
+
+        <div class="space-y-2">
+            <div class="recyclable-items"></div>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+      <div class="space-y-6"> 
+        <div class="bg-gray-100 p-6 rounded-lg text-center">
+          <h3 class="text-3xl font-semibold">Carbon Footprints</h3>
+          <div class="flex justify-around mt-4 total-carbon-footprints">
+            <div>
+              kg
+              <p class="text-2xl font-bold">0</p>
+             
+            </div>
+            <div>
+              lbs
+              <p class="text-2xl font-bold">5</p>
+            </div>
+            
+          </div>
+          <p>Recycled items: <br/> <span id="recycled-items" class="font-bold"></span></p>
+        </div>
+        <p class="text-xs text-gray-600">Here, the amount of carbon footprints are based on the  <a href="https://doi.org/10.1016/j.resconrec.2015.10.026" target= "_blank" alt="greenhouse-gas-emissions">"Greenhouse gas emission factors for recycling of source-segregated waste materials" research</a> and represents approximate values.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+var recyclableItems = [
+    { name: "Plastic", kg: 1.02, lbs: 2.26, value: 0 },
+    { name: "Paper", kg: 0.46, lbs: 1.01, value: 0 },
+    { name: "Glass", kg: 0.31, lbs: 0.68, value: 0 },
+    { name: "Metals", kg: 5.86, lbs: 12.92, value: 0 },
+    { name: "Scrap Metals", kg: 3.57, lbs: 7.87, value: 0 },
+    { name: "Aluminum", kg: 8.14, lbs: 17.95, value: 0 },
+    { name: "Steel", kg: 0.86, lbs: 1.89, value: 0 },
+    { name: "Copper", kg: 2.66, lbs: 5.86, value: 0 },
+    { name: "Textiles", kg: 3.37, lbs: 7.43, value: 0 },
+];
+document.addEventListener("DOMContentLoaded", function() {
+    function $(selector) {
+        return document.querySelector(selector);
+    }
+
+    function animateValue(start, end, selector, duration) {
+        var change = end - start;
+        var increment = change / (duration / 20); // Adjust increment calculation for smoother animation
+        var currentValue = start;
+        var interval = setInterval(function () {
+            currentValue += increment;
+            if ((change > 0 && currentValue >= end) || (change < 0 && currentValue <= end)) {
+                currentValue = end;
+                clearInterval(interval);
+            }
+            $(selector).innerHTML = currentValue.toFixed(2);
+            $(selector).className = `digits-${Math.ceil(currentValue).toString().length} text-2xl font-bold`;
+        }, 20);
+    }
+
+    var totalCarbonFootprints = {
+        kg: 0,
+        lbs: 0,
+    };
+
+    recyclableItems.forEach(function (item) {
+        var section = document.createElement("section");
+        section.className = "flex items-center space-x-2";
+        section.dataset.name = item.name;
+
+        var minusButton = document.createElement("button");
+        minusButton.className = "minus";
+        minusButton.textContent = "-";
+        section.appendChild(minusButton);
+
+        var amountDiv = document.createElement("div");
+        amountDiv.className = "amount";
+        amountDiv.textContent = "00";
+        section.appendChild(amountDiv);
+
+        var plusButton = document.createElement("button");
+        plusButton.className = "plus";
+        plusButton.textContent = "+";
+        section.appendChild(plusButton);
+
+        var span = document.createElement("span");
+        span.textContent = item.name;
+        section.appendChild(span);
+
+        $(".recyclable-items").appendChild(section);
+    });
+
+    function updateValues(event) {
+        if (event.target.tagName === "BUTTON") {
+            var item = recyclableItems.find(function (item) {
+                return item.name === event.target.parentNode.dataset.name;
+            });
+            if (event.target.classList.contains("plus") && item.value < 99) {
+                item.value++;
+                totalCarbonFootprints.kg += item.kg;
+                totalCarbonFootprints.lbs += item.lbs;
+            } else if (event.target.classList.contains("minus") && item.value > 0) {
+                item.value--;
+                totalCarbonFootprints.kg -= item.kg;
+                totalCarbonFootprints.lbs -= item.lbs;
+            }
+            event.target.parentNode.querySelector(".amount").textContent = item.value < 10 ? "0" + item.value : item.value;
+            totalCarbonFootprints.kg = parseFloat(totalCarbonFootprints.kg.toFixed(2));
+            totalCarbonFootprints.lbs = parseFloat(totalCarbonFootprints.lbs.toFixed(2));
+
+            // Update the total carbon footprints section
+            animateValue(0, totalCarbonFootprints.kg, ".total-carbon-footprints div:nth-child(1) p", 200);
+            animateValue(0, totalCarbonFootprints.lbs, ".total-carbon-footprints div:nth-child(2) p", 200);
+
+            // Update the list of recycled items
+            var recycledItems = recyclableItems.filter(function(item) {
+                return item.value > 0;
+            }).map(function(item) {
+                return item.name + " (" + item.value + ")";
+            }).join(", ");
+            $("#recycled-items").innerHTML = recycledItems;
+        }
+    }
+
+    var holdInterval;
+    $(".recyclable-items").addEventListener("click", updateValues);
+    $(".recyclable-items").addEventListener("mousedown", function (event) {
+        holdInterval = setInterval(function () {
+            updateValues(event);
+        }, 150);
+    });
+    $(".recyclable-items").addEventListener("mouseup", function () {
+        clearInterval(holdInterval);
+    });
+    
+});
+</script>
