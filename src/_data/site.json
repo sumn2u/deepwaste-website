@@ -25,5 +25,12 @@
   "rest_api_url": "https://deep-waste-rest-api.fly.dev/api/",
   "garbage_guru_competition_url": "https://www.kaggle.com/competitions/garbage-guru-challenge",
   "dataset_doi": "https://doi.org/10.34740/kaggle/ds/2814684",
-  "annotation_url": "https://github.com/sumn2u/annotate-lab"
+  "annotation_url": "https://github.com/sumn2u/annotate-lab",
+  "partners": [
+    {
+      "name": "Moms Store Nepal",
+      "url": "https://momsstorenepal.com",
+      "image": "/assets/images/pages/partners/momsstorenepal.png"
+    }
+  ]
 }

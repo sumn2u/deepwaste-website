@@ -1,0 +1,103 @@
+<div class="main-container">
+    <h1 class="text-4xl sm:text-4xl md:text-4xl font-semibold mb-5">Become a Partner</h1>
+    <p>We are always looking to expand our network of partners who are passionate about sustainability and environmental conservation. If your organization is interested in collaborating with us, please fill out the form below.</p>
+
+
+            <div class="grid sm:grid-cols-2 items-start gap-14 mx-auto">
+                <div>
+                    <img src="/assets/images/pages/partners/recycle_qrcode.gif" alt="Description of GIF" class="w-half h-auto rounded-lg shadow-lg">
+                </div>
+                <div>
+                <div id="response-message" class="text-sm mb-4"></div> 
+                <form id="contact-form" class="ml-auto space-y-4 w-full">
+                    <div class="relative">
+                        <input type='text' id='name' name='name' placeholder='Name' 
+                            class="w-full text-gray-800 rounded-md py-2.5 px-4 border text-sm outline-blue-500 mb-1" />
+                        <span id="name-error" class="text-red-500 text-sm"></span>
+                    </div>
+                    
+                    <div class="relative">
+                        <input type='email' id='email' name='email' placeholder='Email' 
+                            class="w-full text-gray-800 rounded-md py-2.5 px-4 border text-sm outline-blue-500 mb-1" />
+                        <span id="email-error" class="text-red-500 text-sm"></span>
+                    </div>
+                    
+                    <div class="relative">
+                        <input type='text' id='subject' name='subject' placeholder='Subject' 
+                            class="w-full text-gray-800 rounded-md py-2.5 px-4 border text-sm outline-blue-500 mb-1" />
+                        <span id="subject-error" class="text-red-500 text-sm"></span>
+                    </div>
+                    
+                    <div class="relative">
+                        <textarea id='message' name='message' placeholder='Message' rows="6"
+                            class="w-full text-gray-800 rounded-md px-4 border text-sm pt-2.5 outline-blue-500 mb-1"></textarea>
+                        <span id="message-error" class="text-red-500 text-sm"></span>
+                    </div>
+                    
+                    <button type='submit'
+                        class="text-white bg-blue-500 hover:bg-blue-600 rounded-md text-sm px-4 py-3 w-full !mt-6">Send</button>
+                </form>
+               </div>
+            </div>
+    
+</div>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script>
+    emailjs.init({
+        publicKey: "JxvMAPKdqeolcabsi",
+    }); 
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        document.querySelectorAll('.text-red-500').forEach(el => el.textContent = '');
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+        let valid = true;
+
+        if (!name) {
+            document.getElementById('name-error').textContent = 'Name is required.';
+            valid = false;
+        }
+        if (!email) {
+            document.getElementById('email-error').textContent = 'Email is required.';
+            valid = false;
+        } else if (!validateEmail(email)) {
+            document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+            valid = false;
+        }
+        if (!subject) {
+            document.getElementById('subject-error').textContent = 'Subject is required.';
+            valid = false;
+        }
+        if (!message) {
+            document.getElementById('message-error').textContent = 'Message is required.';
+            valid = false;
+        }
+
+        if (!valid) {
+            event.preventDefault(); // Prevent form submission if validation fails
+        }
+        if (valid) {
+            event.preventDefault();
+            // Send email using EmailJS
+            emailjs.sendForm('service_t2y5cdb', 'template_czv6tn9', this)
+                .then(function(response) {
+                    document.getElementById('response-message').textContent = 'Your message has been sent successfully!';
+                    document.getElementById('response-message').className = 'text-green-500 mb-4 text-sm';
+                    document.getElementById('contact-form').reset();
+                }, function(error) {
+                    document.getElementById('response-message').textContent = 'Oops! Something went wrong. Please try again.';
+                    document.getElementById('response-message').className = 'text-red-500 mb-4 text-sm';
+                });
+        }
+    });
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+</script>
