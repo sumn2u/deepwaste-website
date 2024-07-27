@@ -43,14 +43,14 @@
 <script>
 
 var recyclableItems = [
-    { name: "Plastic", kg: 1.02, lbs: 2.26, value: 0 },
-    { name: "Paper", kg: 0.46, lbs: 1.01, value: 0 },
+    { name: "Aluminum", kg: 8.14, lbs: 17.95, value: 0 },
+    { name: "Copper", kg: 2.66, lbs: 5.86, value: 0 },
     { name: "Glass", kg: 0.31, lbs: 0.68, value: 0 },
     { name: "Metals", kg: 5.86, lbs: 12.92, value: 0 },
+    { name: "Paper", kg: 0.46, lbs: 1.01, value: 0 },
+    { name: "Plastic", kg: 1.02, lbs: 2.26, value: 0 },
     { name: "Scrap Metals", kg: 3.57, lbs: 7.87, value: 0 },
-    { name: "Aluminum", kg: 8.14, lbs: 17.95, value: 0 },
     { name: "Steel", kg: 0.86, lbs: 1.89, value: 0 },
-    { name: "Copper", kg: 2.66, lbs: 5.86, value: 0 },
     { name: "Textiles", kg: 3.37, lbs: 7.43, value: 0 },
 ];
 document.addEventListener("DOMContentLoaded", function() {
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
         section.appendChild(minusButton);
 
         var amountDiv = document.createElement("div");
-        amountDiv.className = "amount w-8 text-center";
+        amountDiv.className = "amount w-8 text-center text-gray-400";
         amountDiv.textContent = "00";
         section.appendChild(amountDiv);
 
@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var span = document.createElement("span");
         span.textContent = item.name;
+        span.className = "text-gray-700";
         section.appendChild(span);
 
         $(".recyclable-items").appendChild(section);
