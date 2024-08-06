@@ -30,7 +30,7 @@
             {% if site.newsletter_url %}
                 <div class="pb-4 md:pb-0">
                     <a aria-label="newletter" class="text-gray-500 no-underline hover:hover-link" href="{{ site.newsletter_url }}" target="_blank" rel="noopener">
-                        Newletter
+                        Newsletter
                     </a>
                 </div>
             {% endif %}
@@ -63,6 +63,14 @@
                         </div>
                     {% endif %}
                 {% endfor %}
+                {% if site.waste_assistant_url %}
+                    <div class="pb-4 md:pb-0 pl-6">
+                        <a aria-label="garbo" class="text-gray-500 no-underline hover:hover-link" href="{{ site.waste_assistant_url }}" target="_blank" rel="noopener">
+                            Garbo 🤖
+                        </a>
+                    </div>
+                {% endif %}
+                
                 {% if site.newsletter_url %}
                     <div class="pb-4 md:pb-0 pl-6">
                         <a aria-label="newletter" class="text-gray-500 no-underline hover:hover-link" href="{{ site.newsletter_url }}" target="_blank" rel="noopener">

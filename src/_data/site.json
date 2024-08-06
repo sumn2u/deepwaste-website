@@ -26,6 +26,7 @@
   "garbage_guru_competition_url": "https://www.kaggle.com/competitions/garbage-guru-challenge",
   "dataset_doi": "https://doi.org/10.34740/kaggle/ds/2814684",
   "annotation_url": "https://github.com/sumn2u/annotate-lab",
+  "waste_assistant_url": "https://demo.dwaste.live",
   "partners": [
     {
       "name": "Moms Store Nepal",
